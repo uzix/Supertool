@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/perl -p -i -e "s/U-11.04/T-Server/g" /etc/bash.bashrc

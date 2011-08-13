@@ -1,0 +1,272 @@
+#!/bin/bash
+#Administratörs Meny
+	function Uppdatera {
+	clear
+	apt-get update && apt-get upgrade && apt-get dist-upgrade
+}
+	function Search {
+	clear
+	echo -n Sök "paket"
+	read paket
+	apt-cache search $paket=
+}
+	function Install {
+	clear
+	echo -n Installera "paket"=
+	read paket
+	apt-get --install-recommends install $paket
+}
+
+	function Logg {
+	clear
+	dmesg | less && cat /var/log/messages | less
+}
+	function Hardware {
+	clear
+	lspci -k | less && dmidecode | less && uname -a
+}
+	function System {
+	clear
+	dmesg | less
+}
+	function Processer {
+	clear
+	ps aux | less
+}
+	function Reboot {
+	clear
+	reboot
+}
+	function Halt {
+	clear
+	halt
+}
+	function Memory {
+	clear
+	free -m && df -m
+}
+	function Scan {
+	clear
+	nmap -P0 192.168.0.* | less
+}
+	function Netstat {
+	clear
+	netstat | less
+}
+	function Ip {
+	clear
+	ifconfig
+}
+	function Updatedb {
+	clear
+	updatedb
+}
+	function Locate {
+	clear
+	echo -n Lokalisera "fil"=
+	read fil
+	locate $fil
+}
+	function ListenPort {
+	clear
+	echo -n Lyssna på "port"=
+	read port
+	lsof -i :$port | less
+}
+	function AddService {
+	clear
+	echo -n Lägg till "service"=
+	read service
+	update-rc.d $service defaults
+}
+	function RemoveService {
+	clear
+	echo -n Ta bort "service"=
+	read service
+	update-rc.d -f $service remove
+}
+	function LsService {
+	clear
+	ls /etc/init.d | less
+}
+	function ServiceReboot {
+	clear
+	echo -n Starta om "service"=
+	read service
+	ls /etc/init.d/$service restart
+}
+	function StartService {
+	clear
+	echo -n Starta "service"=
+	read service
+	ls /etc/init.d/$service start
+}
+	function StopService {
+	clear
+	echo -n Stoppa "service"=
+	read service
+	ls /etc/init.d/$service stop
+}
+	function StopPs {
+	clear
+	echo -n Döda "processnr"=
+	read processnr
+	kill $processnr
+}
+	function CheckLogin {
+	clear
+	w
+}
+	function Uppe {
+	clear
+	uptime
+}
+	function IpTrafik {
+	clear
+	iptraf
+}
+	function TcpDump {
+	clear
+	echo -n Kolla "portar"=
+	read portar
+	tcpdump port $portar
+}
+	function CheckInternetService {
+	clear
+	lsof -i
+}
+	function CheckHarddrive {
+	clear
+	echo -n Kolla "harddrives"=
+	read harddrives
+	smartctl -a $harddrives | less
+}
+	function CheckRootkits {
+	clear
+	rkhunter -c
+}
+	function CheckSensors {
+	clear
+	sensors
+}
+        function CheckInstall {
+        clear
+        dpkg -l | less
+}
+	function menu {
+	clear
+	echo -e "\t\t\tAdministratörs Meny\n"
+	echo -e "\ta. Ladda hem och installera systemuppdateringar"
+	echo -e "\tb. Kolla Startmeddelanden och Systemloggar"
+	echo -e "\tc. Kolla Systemets Hårdvara"
+	echo -e "\td. Kolla Systemmeddelanden"
+	echo -e "\te. Kolla Vilka Processer som körs"
+	echo -e "\tf. Starta Om Server"
+	echo -e "\tg. Stäng Av Server"
+	echo -e "\th. Kolla hur mycket ramminne och diskutrymme som används"
+	echo -e "\ti. Portscanna Det Lokala Nätverket"
+	echo -e "\tj. Kolla Nätverkstrafik"
+	echo -e "\tk. Kolla Ipadress"
+	echo -e "\tl. Sök Paket"
+	echo -e "\tm. Installera Paket"
+	echo -e "\tn. Uppdatera Databas"
+	echo -e "\to. Lokalisera Filer"
+	echo -e "\tp. Lyssna på portaktivitet"
+	echo -e "\tq. Lägg till starttjänst"
+	echo -e "\tr. Ta bort starttjänst"
+	echo -e "\ts. Lista starttjänster"
+	echo -e "\tt. Starta om service"
+	echo -e "\ty. Starta service"
+	echo -e "\tv. Stoppa service"
+	echo -e "\tw. Döda process"
+	echo -e "\tx. Kolla vilka användare som är inloggade"
+	echo -e "\tz. Kolla hur länge systemet varit uppe"
+	echo -e "\t1. Kolla Iptrafik"
+	echo -e "\t2. Analysera nätverkstrafik på specifika portar"
+	echo -e "\t3. Kolla vilka internettjänster som är igång"
+	echo -e "\t4. Kolla status på hårddiskar"
+	echo -e "\t5. Kolla efter Rootkits"
+	echo -e "\t6. Kolla datortemperatur"
+	echo -e "\t7. Kolla vilka paket som är installerade"
+	echo -e "\t0. Avsluta Program\n\n"
+	echo -en "\t\tVälj Alternativ: "
+	read -n 1 option
+}
+	while [ 1 ]
+	do
+	menu
+	case $option in
+	0)
+	break ;;
+	a)
+	Uppdatera ;;
+	b)
+	Logg ;;
+	c)
+	Hardware ;;
+	d)
+	System ;;
+	e)
+	Processer ;;
+	f)
+	Reboot ;;
+	g)
+	Halt ;;
+	h)
+	Memory ;;
+	i)
+	Scan ;;
+	j)
+	Netstat ;;
+	k)
+	Ip ;;
+	l)
+	Search ;;
+	m)
+	Install ;;
+	n)
+	Updatedb ;;
+	o)
+	Locate ;;
+	p)
+	ListenPort ;;
+	q)
+	AddService ;;
+	r)
+	RemoveService ;;
+	s)
+	LsService ;;
+	t)
+	ServiceReboot ;;
+	y)
+	StartService ;;
+	v)
+	StopService ;;
+	w)
+	StopPs ;;
+	x)
+	CheckLogin ;;
+	z)
+	Uppe ;;
+	1)
+	IpTrafik ;;
+	2)
+	TcpDump ;;
+	3)
+	CheckInternetService ;;
+	4)
+	CheckHarddrive ;;
+	5)
+	CheckRootkits ;;
+	6)
+	CheckSensors ;;
+        7)
+        CheckInstall ;;
+	*)
+	clear
+	echo "Fel Val" ;;
+	esac
+	echo -en "\n\n\t\t\tTryck på valfri tangent för att fortsätta"
+	read -n 1 line
+	done
+	clear

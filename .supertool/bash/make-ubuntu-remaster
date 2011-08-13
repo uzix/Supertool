@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /opt/image
+mkisofs -r -V "$IMAGE_NAME" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o /home/uzi/Extended/ubuntu-remix.iso .
+cd ..

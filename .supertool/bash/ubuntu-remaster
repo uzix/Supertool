@@ -1,0 +1,10 @@
+#!/bin/bash
+touch image/ubuntu
+
+mkdir /opt/image/.disk
+cd /opt/image/.disk
+touch base_installable
+echo "full_cd/single" > cd_type
+echo 'Ubuntu 11.04 "Natty" - i386 (2011)' > info
+echo "http//smartcomputer.se" > release_notes_url
+cd ../..

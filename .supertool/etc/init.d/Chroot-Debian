@@ -1,0 +1,16 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          Chroot-Debian
+# Short-Description: Starts services inside embedded system
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     
+# Default-Stop:      
+### END INIT INFO
+
+	CHROOT=/var/chroot/Debian 
+	mount -t devpts devpts $CHROOT/dev/pts
+	mount -t proc proc $CHROOT/proc
+	chroot  $CHROOT /etc/init.d/ssh start
+	chroot  $CHROOT /etc/init.d/apache2 start
+	chroot  $CHROOT /etc/init.d/mysql start

@@ -1,0 +1,14 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          android-adb-server
+# Short-Description: Makes it possible for you to start adb-shell
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     
+# Default-Stop:      
+### END INIT INFO
+
+        android=/android/android-sdk-linux_x86/platform-tools 
+        $android/adb kill-server
+        $android/adb start-server
+	$android/adb adb devices

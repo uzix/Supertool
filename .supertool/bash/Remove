@@ -1,0 +1,6 @@
+#!/bin/bash
+REMOVE='ubiquity ubiquity-frontend-gtk ubiquity-frontend-debconf ubiquity-frontend-kde casper lupin-casper live-initramfs user-setup discover1 xresprobe os-prober libdebian-installer4'
+for i in $REMOVE 
+do
+        sudo sed -i "/${i}/d" /opt/image/casper/filesystem.manifest-desktop
+done

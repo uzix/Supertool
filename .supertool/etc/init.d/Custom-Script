@@ -1,0 +1,23 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          Customised Settings
+# Short-Description: Customised initscript by user
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     
+# Default-Stop:      
+# Description:       This file loads user-specific commands
+### END INIT INFO
+#/etc/init.d/tor stop
+#/etc/init.d/clamav-freshclam stop
+ifconfig eth0 down
+macchanger -a eth0
+ifconfig eth0 up
+ifconfig wlan0 down
+macchanger -a wlan0
+ifconfig wlan0 up
+#/etc/init.d/clamav-freshclam start
+#Internet Connection Tweak, /etc/sysctl.conf http://www.ubuntu-unleashed.com/2008/05/howto-tweak-your-internet-connection.html
+#sysctl -p
+#vgchange -ay vg_modmaster
+#mount /dev/vg_modmaster/lv_root* /mnt/gentoo

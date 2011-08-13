@@ -1,0 +1,4 @@
+#!/bin/bash
+	cp /usr/local/bin/.supertool/drivers/.scanner/ps1fw.usb /usr/share/sane/gt68xx/
+	chown root /usr/share/sane/gt68xx/ps1fw.usb
+	chmod 755 /usr/share/sane/gt68xx/ps1fw.usb

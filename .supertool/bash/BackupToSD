@@ -1,0 +1,5 @@
+!/bin/bash
+	umount /home/uzi/Extended
+        cp -R -L /home/uzi /mnt/lubuntu-SD/home/
+	mount -t ext4 /dev/sda5 /home/uzi/Extended
+	chroot /mnt/lubuntu-SD/ chown -R uzi /home/uzi        
