@@ -19,6 +19,7 @@ def get_param(prompt_string):
 
 screen = curses.initscr()
 
+curses.endwin()
 Kommentar = get_param("Lägg kommentar, exempelvis datum 2011-06-26, 1600")
 system("git add .")	
 system("git commit -m '" + Kommentar + "'")
