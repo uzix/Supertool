@@ -33,6 +33,7 @@ while x != ord('q'):
         screen.addstr(11, 4, "i - Kolla upp en ipadress", curses.color_pair(2) )
         screen.addstr(12, 4, "j - Ladda ner en fil", curses.color_pair(2) )
         screen.addstr(13, 4, "k - Ladda ner en hel hemsida, inklusive undersidor", curses.color_pair(2) )
+        screen.addstr(14, 4, "l - Ladda upp en fil til en ftp-server", curses.color_pair(2) )
 	screen.addstr(25, 4, "q - Huvudmeny", curses.color_pair(1) )
 	screen.refresh()
 
@@ -87,6 +88,13 @@ while x != ord('q'):
                 Homepage = get_param("Ange hemside adress")
                 curses.endwin()
                 execute_cmd("wget -r " + Homepage)
+        if x == ord('l'):
+                User = get_param("Ange ditt användarnamn")
+                Passworld = get_param("Ange ditt lösenord")
+                Server = get_param("Ange vilken ftp-server du vill ladda upp en fil till")
+		Fil = get_param("Ange vilken fil du vill ladda upp")
+                curses.endwin()
+                execute_cmd(" ")
 
 curses.endwin()
 

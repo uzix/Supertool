@@ -42,7 +42,8 @@ while x != ord('q'):
         screen.addstr(20, 4, "s - Återställ backup", curses.color_pair(2) )
         screen.addstr(21, 4, "t - Modifiera din skräddarsydda Ubuntu-Debian-remaster", curses.color_pair(2) )
         screen.addstr(22, 4, "y - Installera repository för spel i ubuntu", curses.color_pair(2) )	
-        screen.addstr(22, 4, "v - Installera mediabuntus repository i ubuntu", curses.color_pair(2) )
+        screen.addstr(23, 4, "v - Installera mediabuntus repository i ubuntu", curses.color_pair(2) )
+        screen.addstr(24, 4, "w - Ta backup på Pidgin, firefox samt thunderbird", curses.color_pair(2) )
 	screen.addstr(25, 4, "q - Huvudmeny", curses.color_pair(1) )
 	screen.refresh()
 
@@ -277,6 +278,10 @@ while x != ord('q'):
                 execute_cmd_silent("sed '$ a deb http://packages.medibuntu.org/ " + UbuntuVersion + " free non-free' /etc/apt/sources.list > /tmp/tmp-mediubuntu")
                 execute_cmd_silent("mv /tmp/tmp-mediubuntu /etc/apt/sources.list")
                 execute_cmd("wget -q -O- http://packages.medibuntu.org/medibuntu-key.gpg | sudo apt-key add -")
+        if x == ord('w'):
+                curses.endwin()
+		execute_cmd_silent("cp -R -L /home/uzi/.mozilla /home/uzi/Extended/Backup/home/uzi")                
+                execute_cmd_silent("cp -R -L /home/uzi/.purple /home/uzi/Extended/Backup/home/uzi")
+                execute_cmd("cp -R -L /home/uzi/.thunderbird /home/uzi/Extended/Backup/home/uzi")
 
 curses.endwin()
-

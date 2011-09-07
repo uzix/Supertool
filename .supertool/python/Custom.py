@@ -41,7 +41,7 @@ while x != ord('q'):
         screen.addstr(19, 4, "r - Läs pythondokumentation", curses.color_pair(2) )
         screen.addstr(20, 4, "s - Ladda ner en youtubefilm och gör om den till en mp3-fil", curses.color_pair(2) )
         screen.addstr(21, 4, "t - Stäng av splash bootskärm, samt inaktivera uppgraderingar av grubs-config", curses.color_pair(2) )
-        screen.addstr(22, 4, "y - Aktivera splash bootskärm, samt aktivera uppgraderinga av grubs-config", curses.color_pair(2) )
+        screen.addstr(22, 4, "y - Aktivera splash bootskärm, samt aktivera uppgraderingar av grubs-config", curses.color_pair(2) )
 	screen.addstr(25, 4, "q - Huvudmenyn", curses.color_pair(1))
 	screen.refresh()
 
