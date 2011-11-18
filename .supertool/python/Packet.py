@@ -26,6 +26,7 @@ while x != ord('q'):
        	screen.addstr(4, 4,  "b - Kolla vilka paket som är installerade", curses.color_pair(2) )
         screen.addstr(5, 4,  "c - Sök paket", curses.color_pair(2) )
       	screen.addstr(6, 4,  "d - Installera paket", curses.color_pair(2) )
+        screen.addstr(7, 4,  "e - Uppdatera Metasploit", curses.color_pair(2) )
 	screen.addstr(25, 4, "q - Huvudmeny", curses.color_pair(1) )
 	screen.refresh()
 
@@ -47,6 +48,9 @@ while x != ord('q'):
                 Packet = get_param("Installera ett eller flera paket, om fler skilj dem åt med mellanslag")
                 curses.endwin()
                 execute_cmd("apt-get install " + Packet)
+        if x == ord('e'):
+                curses.endwin()
+                execute_cmd("svn update /opt/msf/msf")
 
 curses.endwin()
 

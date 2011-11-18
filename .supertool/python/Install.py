@@ -44,7 +44,8 @@ while x != ord('q'):
         screen.addstr(22, 4, "y - Installera repository för spel i ubuntu", curses.color_pair(2) )	
         screen.addstr(23, 4, "v - Installera mediabuntus repository i ubuntu", curses.color_pair(2) )
         screen.addstr(24, 4, "w - Ta backup på Pidgin, firefox samt thunderbird", curses.color_pair(2) )
-	screen.addstr(25, 4, "q - Huvudmeny", curses.color_pair(1) )
+        screen.addstr(25, 4, "x - Installera samt konfigurera metasploit", curses.color_pair(2) )
+	screen.addstr(26, 4, "q - Huvudmeny", curses.color_pair(1) )
 	screen.refresh()
 
 	x = screen.getch()
@@ -283,5 +284,13 @@ while x != ord('q'):
 		execute_cmd_silent("cp -R -L /home/uzi/.mozilla /home/uzi/Extended/Backup/home/uzi")                
                 execute_cmd_silent("cp -R -L /home/uzi/.purple /home/uzi/Extended/Backup/home/uzi")
                 execute_cmd("cp -R -L /home/uzi/.thunderbird /home/uzi/Extended/Backup/home/uzi")
+        if x == ord('x'):
+                curses.endwin() # Info about installation on https://community.rapid7.com/docs/DOC-1296
+                execute_cmd("apt-get install apt-get install ruby libopenssl-ruby libyaml-ruby libdl-ruby libiconv-ruby libreadline-ruby irb ri rubygems subversion build-essential ruby-dev libpcap-dev")
+                execute_cmd_silent("wget -P /tmp http://downloads.metasploit.com/data/releases/framework-latest.tar.bz2")
+                execute_cmd_silent("mv /tmp/framework-latest.tar.bz2 /opt")
+                execute_cmd_silent("tar -xvf /opt/framework-latest.tar.bz2")               
+                execute_cmd_silent("chown root:root -R /opt/msf")
+                execute_cmd_silent("ln -sf /opt/msf/msf* /usr/local/bin/")
 
 curses.endwin()
