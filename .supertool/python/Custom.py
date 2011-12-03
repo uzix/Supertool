@@ -42,6 +42,7 @@ while x != ord('q'):
         screen.addstr(20, 4, "s - Ladda ner en youtubefilm och gör om den till en mp3-fil", curses.color_pair(2) )
         screen.addstr(21, 4, "t - Stäng av splash bootskärm, samt inaktivera uppgraderingar av grubs-config", curses.color_pair(2) )
         screen.addstr(22, 4, "y - Aktivera splash bootskärm, samt aktivera uppgraderingar av grubs-config", curses.color_pair(2) )
+        screen.addstr(23, 4, "v - Bränn XGD3 xbox 360 backuper", curses.color_pair(2) )
 	screen.addstr(25, 4, "q - Huvudmenyn", curses.color_pair(1))
 	screen.refresh()
 
@@ -54,7 +55,7 @@ while x != ord('q'):
 	if x == ord('b'):
 		ISO = get_param("Välj isofil")
 		curses.endwin()
-		execute_cmd("growisofs -use-the-force-luke=dao -use-the-force-luke=break:1913760  -dvd-compat -speed=4 -Z /dev/scd0=" + ISO)
+		execute_cmd("growisofs -use-the-force-luke=dao -use-the-force-luke=break:1913760  -dvd-compat -speed=2 -Z /dev/scd0=" + ISO)
 	if x == ord('c'):	
 		curses.endwin()
 		execute_cmd("ssh uzi@localhost -p 8522")
@@ -145,6 +146,10 @@ while x != ord('q'):
 		curses.endwin()
                 execute_cmd("chattr -i boot/grub/grub.cfg")
                 execute_cmd("update-grub2")
+        if x == ord('v'): # Fungerar bara med Verbatim DVD+R DL och med LiteOn iHAS624B flashad med iXtreme Burner MAX firmware 
+                ISO = get_param("Välj isofil")
+                curses.endwin()
+                execute_cmd("growisofs -use-the-force-luke=break:2133520 -speed=2 -Z /dev/scd0=" + ISO)
 
 curses.endwin()
 
